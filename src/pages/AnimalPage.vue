@@ -403,7 +403,7 @@ export default {
               label: "Sign Up",
               color: "white",
               handler: () => {
-                router.push({ name: "register" });
+                this.$router.push("/register");
               },
             },
           ],

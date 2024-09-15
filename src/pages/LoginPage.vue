@@ -114,7 +114,7 @@ export default {
               this.storeLogUser.userType = "user";
             }
             this.storeLogUser.img = res.data.img;
-            router.push({ name: "dashboard" });
+            this.$router.push("/dashboard");
           }
         })
         .catch((err) => {
