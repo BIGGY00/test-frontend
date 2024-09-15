@@ -63,11 +63,11 @@
             <img :src="getIcon" />
           </q-avatar>
           <div class="text-weight-bold" style="color: black">
-            {{ usernameDisplay }}
+            {{ userlinkDisplay }}
           </div>
           <div class="text-weight-bold" style="color: cornflowerblue">
             <u style="font-size: 12px"
-              >manage account <q-icon name="settings"
+              >manage account <q-icon link="settings"
             /></u>
           </div>
         </div>
@@ -86,16 +86,12 @@ const BASE_IMAGE_URL = "http://localhost:3000/assets/";
 import { defineComponent, ref, computed } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { useLoginUserStore } from "../stores/loginUserStore.js";
-import { useRoute, useRouter } from "vue-router";
-
-const route = useRoute();
-const router = useRouter();
 
 const unregislinksList = [
   {
     title: "Home",
     icon: "home",
-    name: "home",
+    link: "home",
   },
   {
     title: "About Us",
@@ -105,7 +101,7 @@ const unregislinksList = [
   {
     title: "Animal's Life",
     icon: "pets",
-    name: "pet",
+    link: "pet",
   },
 ];
 
@@ -113,22 +109,22 @@ const userlinksList = [
   {
     title: "Dashboard",
     icon: "dashboard",
-    name: "dashboard",
+    link: "dashboard",
   },
   {
     title: "Community",
     icon: "groups",
-    name: "post",
+    link: "post",
   },
   {
     title: "Animal's Life",
     icon: "pets",
-    name: "pet",
+    link: "pet",
   },
   {
     title: "Map",
     icon: "location_on",
-    name: "map",
+    link: "map",
   },
   {
     title: "Logout",
@@ -140,31 +136,31 @@ const adminlinksList = [
   {
     title: "Dashboard",
     icon: "dashboard",
-    name: "dashboard",
+    link: "dashboard",
   },
   {
     title: "Community",
     icon: "groups",
-    name: "post",
+    link: "post",
   },
   {
     title: "Animal's Life",
     icon: "pets",
-    name: "pet",
+    link: "pet",
   },
   {
     title: "Map",
     icon: "location_on",
-    name: "map",
+    link: "map",
   },
   {
     title: "Logout",
-    name: "logout",
+    link: "logout",
   },
 ];
 
 export default defineComponent({
-  name: "MainLayout",
+  link: "MainLayout",
   components: { EssentialLink },
   setup() {
     const storeLogUser = useLoginUserStore();
@@ -174,7 +170,7 @@ export default defineComponent({
     const notRegis = computed(() => !storeLogUser.userType);
     const isUser = computed(() => storeLogUser.userType === "user");
     const isAdmin = computed(() => storeLogUser.userType === "admin");
-    const usernameDisplay = computed(() => storeLogUser.fullname || "Guest");
+    const userlinkDisplay = computed(() => storeLogUser.fulllink || "Guest");
     const getIcon = computed(() => {
       const imageUrl = storeLogUser.img;
       return imageUrl && !imageUrl.startsWith("http")
@@ -199,7 +195,7 @@ export default defineComponent({
       notRegis,
       isUser,
       isAdmin,
-      usernameDisplay,
+      userlinkDisplay,
       getIcon,
       leftDrawerOpen,
       handleLinkClicked,
