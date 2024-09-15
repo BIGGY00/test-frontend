@@ -114,6 +114,7 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
 import { defineComponent } from "vue";
 import { emailValidate, requiredValidate } from "../utils/validations";
 import { useLoginUserStore } from "../stores/loginUserStore.js";
@@ -149,8 +150,8 @@ export default defineComponent({
       else if (rejectedEntries[0].failedPropValidation == "max-file-size")
         msg = "File size cannot be larger than 1MB";
       Notify.create({
-          type: "negative",
-          message: msg,
+        type: "negative",
+        message: msg,
       });
     },
     updateFile() {
@@ -158,41 +159,41 @@ export default defineComponent({
       this.imageUrl = URL.createObjectURL(this.upload_avatar);
     },
     onSubmit() {
-      if (this.upload_avatar == "")
-        this.upload_avatar = null;
+      if (this.upload_avatar == "") this.upload_avatar = null;
       if (this.upload_avatar) {
         //call upload file API
         const headers = {
-          "Content-Type": "multipart/form-data"
-        }
+          "Content-Type": "multipart/form-data",
+        };
         const formData = new FormData();
         formData.append("singlefile", this.upload_avatar);
-        this.$api.post("/file/upload", formData, {headers})
-        .then((response)=>{
-          if(response.status == 200){
-            // call user registration API
-            this.submitData(response.data.uploadFileName)
-           }
-        })
-        .catch((err) => {
+        this.$api
+          .post("/file/upload", formData, { headers })
+          .then((response) => {
+            if (response.status == 200) {
+              // call user registration API
+              this.submitData(response.data.uploadFileName);
+            }
+          })
+          .catch((err) => {
             console.log(err);
             this.showErrorDialog(err);
-        });
-      }else {
+          });
+      } else {
         //not call upload file API
         // call user registration API
         this.submitData(null);
       }
     },
 
-    submitData(filename){
+    submitData(filename) {
       const data = {
         fullname: this.fullname,
         email: this.email,
         username: this.username,
         password: this.password,
         img: filename,
-      }
+      };
       if (!this.usernameCaption.showClass) {
         Notify.create({
           type: "negative",
@@ -200,37 +201,39 @@ export default defineComponent({
         });
         return;
       }
-      this.$api.post("/auth/signup", data)
+      this.$api
+        .post("/auth/signup", data)
         .then((response) => {
           if (response && response.data) {
             this.storeLogUser.userid = response.data.id;
             this.storeLogUser.fullname = response.data.fullname;
             this.storeLogUser.username = response.data.username;
             this.storeLogUser.accessToken = response.data.accessToken;
-            this.storeLogUser.userType = 'user'
-            if(response.data.img != null){
-              this.storeLogUser.avatar = this.$RESTAPI + "/file/" + response.data.img;
-            } else{
+            this.storeLogUser.userType = "user";
+            if (response.data.img != null) {
+              this.storeLogUser.avatar =
+                this.$RESTAPI + "/file/" + response.data.img;
+            } else {
               this.storeLogUser.avatar = "default-avatar.png";
             }
 
-            this.storeLogUser.img = response.data.img
+            this.storeLogUser.img = response.data.img;
 
             Notify.create({
-              color: 'positive',
-              message: 'Registration successful'
+              color: "positive",
+              message: "Registration successful",
             });
 
-            this.$router.push('/dashboard');
+            router.push("/dashboard");
           } else {
-            throw new Error('Invalid response from server');
+            throw new Error("Invalid response from server");
           }
         })
         .catch((error) => {
           console.error(error);
           Notify.create({
-            color: 'negative',
-            message: `Registration failed: ${error.message}`
+            color: "negative",
+            message: `Registration failed: ${error.message}`,
           });
         })
         .finally(() => {

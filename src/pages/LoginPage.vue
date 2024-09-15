@@ -71,6 +71,7 @@
 <script>
 import { Notify } from "quasar";
 import { useLoginUserStore } from "../stores/loginUserStore";
+import { useRouter } from "vue-router";
 export default {
   name: "LoginPage",
   data() {
@@ -90,38 +91,37 @@ export default {
     onSubmit() {
       const data = {
         username: this.username,
-        password: this.password
-      }
+        password: this.password,
+      };
       this.$api
-      .post("/auth/login", data)
-      .then((res) => {
-        if(res.status == 200){
-          // console.log(res.data)
+        .post("/auth/login", data)
+        .then((res) => {
+          if (res.status == 200) {
+            // console.log(res.data)
+            Notify.create({
+              type: "positive",
+              message: "Login successfully.",
+            });
+            this.storeLogUser.userid = res.data.id;
+            this.storeLogUser.fullname = res.data.fullname;
+            this.storeLogUser.username = res.data.username;
+            this.storeLogUser.accessToken = res.data.accessToken;
+            if (this.storeLogUser.username === "jay") {
+              this.storeLogUser.userType = "admin";
+            } else {
+              this.storeLogUser.userType = "user";
+            }
+            this.storeLogUser.img = res.data.img;
+            router.push("/dashboard");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
           Notify.create({
-            type: "positive",
-            message: "Login successfully."
-          })
-          this.storeLogUser.userid = res.data.id
-          this.storeLogUser.fullname = res.data.fullname
-          this.storeLogUser.username = res.data.username
-          this.storeLogUser.accessToken = res.data.accessToken
-          if(this.storeLogUser.username === 'jay'){
-            this.storeLogUser.userType = 'admin'
-          }
-          else{
-            this.storeLogUser.userType = 'user'
-          }
-          this.storeLogUser.img = res.data.img
-          this.$router.push("/dashboard")
-        }
-      })
-      .catch((err)=>{
-        console.log(err)
-        Notify.create({
-          type: "negative",
-          message: "Invalid Username or Password."
+            type: "negative",
+            message: "Invalid Username or Password.",
+          });
         });
-      });
       this.$refs.myLoginForm.reset();
     },
   },

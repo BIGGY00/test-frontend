@@ -3,7 +3,7 @@
     <q-page-container>
       <div class="q-pa-md">
         <div class="row justify-between q-mb-md">
-          <q-btn color="green" label="Post" @click="handlePostButtonClick " />
+          <q-btn color="green" label="Post" @click="handlePostButtonClick" />
           <q-input
             outlined
             dense
@@ -25,28 +25,55 @@
 
         <!-- Post Modal -->
         <q-dialog v-model="showPostModal">
-          <q-card style="width: 500px; max-height: 650px;">
+          <q-card style="width: 500px; max-height: 650px">
             <q-card-section class="bg-green text-white">
-              <div class="text-h5 row items-center justify-between">Stray Animal Post
+              <div class="text-h5 row items-center justify-between">
+                Stray Animal Post
                 <q-btn icon="close" flat round dense v-close-popup />
               </div>
             </q-card-section>
 
             <q-card-section>
               <div class="text-center q-mb-md">
-                <q-img v-if="postImage" :src="postImage" style="max-width: 200px; max-height: 200px;" />
+                <q-img
+                  v-if="postImage"
+                  :src="postImage"
+                  style="max-width: 200px; max-height: 200px"
+                />
               </div>
               <div class="text-center q-mb-md">
-                <q-btn color="green" label="Upload Image" @click="openFileInput" class="q-mt-md" />
+                <q-btn
+                  color="green"
+                  label="Upload Image"
+                  @click="openFileInput"
+                  class="q-mt-md"
+                />
               </div>
-              <input type="file" style="display: none" ref="fileInput" accept="image/*" @change="handleFileUpload" />
+              <input
+                type="file"
+                style="display: none"
+                ref="fileInput"
+                accept="image/*"
+                @change="handleFileUpload"
+              />
             </q-card-section>
 
             <q-card-section>
-              <q-input v-model="animalName" label="Animal's Name" outlined dense />
+              <q-input
+                v-model="animalName"
+                label="Animal's Name"
+                outlined
+                dense
+              />
             </q-card-section>
             <q-card-section>
-              <q-input v-model="description" label="Description" outlined dense type="textarea" />
+              <q-input
+                v-model="description"
+                label="Description"
+                outlined
+                dense
+                type="textarea"
+              />
             </q-card-section>
 
             <q-card-actions align="right">
@@ -62,23 +89,33 @@
             :key="post.id"
           >
             <q-card @click="showDetails(post)" class="my-card">
-              <q-img :src="post.image" class="fixed-height-img"/>
+              <q-img :src="post.image" class="fixed-height-img" />
               <q-card-section class="bg-green text-white">
                 <div class="row no-wrap items-center justify-between">
                   <div class="flex no-wrap items-center">
                     <q-avatar>
                       <img :src="post.user_img" />
                     </q-avatar>
-                    <div class="q-ml-sm text-weight-bold">{{ post.author }}</div>
+                    <div class="q-ml-sm text-weight-bold">
+                      {{ post.author }}
+                    </div>
                   </div>
                   <div>
-                    <q-btn icon="verified" flat round dense class="verified-icon"></q-btn>
+                    <q-btn
+                      icon="verified"
+                      flat
+                      round
+                      dense
+                      class="verified-icon"
+                    ></q-btn>
                   </div>
                 </div>
               </q-card-section>
               <q-card-section class="fixed-height-content">
                 <div class="text-h6">{{ post.title }}</div>
-                <div class="text-body1 multiline-truncate">{{ post.description }}</div>
+                <div class="text-body1 multiline-truncate">
+                  {{ post.description }}
+                </div>
               </q-card-section>
             </q-card>
           </div>
@@ -99,15 +136,36 @@
                   <div class="q-ml-sm text-h6">{{ currentPost.author }}</div>
                 </div>
                 <div v-if="currentPost.user_id == userId">
-                  <q-btn icon="edit" flat round dense @click="openEditDialog(currentPost)" />
-                  <q-btn icon="delete" flat round dense @click="confirmDelete(currentPost)" />
+                  <q-btn
+                    icon="edit"
+                    flat
+                    round
+                    dense
+                    @click="openEditDialog(currentPost)"
+                  />
+                  <q-btn
+                    icon="delete"
+                    flat
+                    round
+                    dense
+                    @click="confirmDelete(currentPost)"
+                  />
                 </div>
               </div>
             </q-card-section>
 
-            <q-card-section class="row items-center justify-between custom-section">
+            <q-card-section
+              class="row items-center justify-between custom-section"
+            >
               <div class="text-h6 col">{{ currentPost.title }}</div>
-              <q-btn v-if="currentPost.user_id == userId" class="mark-adopted" flat label="Mark Adopted" color="green" @click="markAsAdopted(currentPost)" />
+              <q-btn
+                v-if="currentPost.user_id == userId"
+                class="mark-adopted"
+                flat
+                label="Mark Adopted"
+                color="green"
+                @click="markAsAdopted(currentPost)"
+              />
             </q-card-section>
 
             <q-card-section class="custom-description">
@@ -125,25 +183,50 @@
         <q-dialog v-model="showEditDialog">
           <q-card style="width: 500px">
             <q-card-section class="bg-green text-white">
-              <div class="text-h6 row items-center justify-between">Edit Post
+              <div class="text-h6 row items-center justify-between">
+                Edit Post
                 <q-btn icon="close" flat round dense v-close-popup />
               </div>
             </q-card-section>
             <q-card-section>
               <!-- Image preview and upload input -->
               <div class="text-center q-mb-md">
-                <q-img v-if="editPostImage" :src="editPostImage" style="max-width: 300px; max-height: 300px;" />
+                <q-img
+                  v-if="editPostImage"
+                  :src="editPostImage"
+                  style="max-width: 300px; max-height: 300px"
+                />
               </div>
               <div class="text-center q-mb-md">
-                <q-btn color="green" label="Upload Image" @click="openEditFileInput" class="q-mt-md" />
+                <q-btn
+                  color="green"
+                  label="Upload Image"
+                  @click="openEditFileInput"
+                  class="q-mt-md"
+                />
                 <!-- Remove hidden attribute and use styles to hide the input -->
-                <input type="file" ref="editFileInput" accept="image/*" @change="handleEditFileUpload" style="display: none;" />
+                <input
+                  type="file"
+                  ref="editFileInput"
+                  accept="image/*"
+                  @change="handleEditFileUpload"
+                  style="display: none"
+                />
               </div>
               <q-input v-model="postToEdit.title" label="Animal's Name" />
-              <q-input v-model="postToEdit.description" label="Description" type="textarea" />
+              <q-input
+                v-model="postToEdit.description"
+                label="Description"
+                type="textarea"
+              />
             </q-card-section>
             <q-card-actions align="right">
-              <q-btn label="Cancel" color="black" flat @click="showEditDialog = false" />
+              <q-btn
+                label="Cancel"
+                color="black"
+                flat
+                @click="showEditDialog = false"
+              />
               <q-btn label="Save" color="green" @click="editPost" />
             </q-card-actions>
           </q-card>
@@ -154,24 +237,30 @@
           <q-card>
             <q-card-section class="row items-center">
               <q-avatar icon="warning" color="amber" text-color="white" />
-              <span class="q-ml-sm">Are you sure you want to delete this post?</span>
+              <span class="q-ml-sm"
+                >Are you sure you want to delete this post?</span
+              >
             </q-card-section>
             <q-card-actions align="right">
-              <q-btn label="Cancel" color="black" flat @click="showDeleteConfirmDialog = false" />
+              <q-btn
+                label="Cancel"
+                color="black"
+                flat
+                @click="showDeleteConfirmDialog = false"
+              />
               <q-btn label="Yes, Delete" color="negative" @click="deletePost" />
             </q-card-actions>
           </q-card>
         </q-dialog>
-
-
       </div>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-const BASE_IMAGE_URL = 'http://localhost:3000/assets/';
+const BASE_IMAGE_URL = "http://localhost:3000/assets/";
 import { useLoginUserStore } from "../stores/loginUserStore";
+import { useRouter } from "vue-router";
 export default {
   data() {
     return {
@@ -179,9 +268,9 @@ export default {
       detailsDialog: false,
       showPostModal: false,
       postImage: null,
-      animalName: '',
-      description: '',
-      searchTerm: '',
+      animalName: "",
+      description: "",
+      searchTerm: "",
       posts: [],
       showEditDialog: false,
       showDeleteConfirmDialog: false,
@@ -190,17 +279,19 @@ export default {
       postToEdit: {},
       postToDelete: null,
       loginUserStore: useLoginUserStore(),
-    }
+    };
   },
   computed: {
     filteredPosts() {
       return this.posts.filter((post) => {
-        const searchTermLower = this.searchTerm.toLowerCase()
-        return post.adopted === 1 && // Add this line to check for non-adopted animals
-        (post.title.toLowerCase().includes(searchTermLower) ||
-        post.description.toLowerCase().includes(searchTermLower) ||
-        post.author.toLowerCase().includes(searchTermLower));
-      })
+        const searchTermLower = this.searchTerm.toLowerCase();
+        return (
+          post.adopted === 1 && // Add this line to check for non-adopted animals
+          (post.title.toLowerCase().includes(searchTermLower) ||
+            post.description.toLowerCase().includes(searchTermLower) ||
+            post.author.toLowerCase().includes(searchTermLower))
+        );
+      });
     },
     userId() {
       return this.loginUserStore.userid;
@@ -208,7 +299,7 @@ export default {
   },
   methods: {
     openFileInput() {
-      this.$refs.fileInput.click()
+      this.$refs.fileInput.click();
     },
     openEditFileInput() {
       this.$refs.editFileInput.click();
@@ -225,42 +316,51 @@ export default {
       }
     },
     sortPosts(order) {
-      if (order === 'newest') {
-        this.posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
-      } else if (order === 'oldest') {
-        this.posts.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+      if (order === "newest") {
+        this.posts.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+      } else if (order === "oldest") {
+        this.posts.sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
       }
     },
     showDetails(post) {
-      console.log('Post user ID:', post.user_id, 'Logged-in user ID:', this.userId);
+      console.log(
+        "Post user ID:",
+        post.user_id,
+        "Logged-in user ID:",
+        this.userId
+      );
       this.currentPost = post;
       this.detailsDialog = true;
     },
     async submitPost() {
       try {
         if (!this.postImageFile) {
-          throw new Error('Please upload an image.');
+          throw new Error("Please upload an image.");
         }
 
         // Set up FormData to send the file
         const formData = new FormData();
-        formData.append('singlefile', this.postImageFile);
+        formData.append("singlefile", this.postImageFile);
 
         // Post the image file to your backend
-        const fileResponse = await this.$api.post('/file/upload', formData, {
+        const fileResponse = await this.$api.post("/file/upload", formData, {
           headers: {
-            'Content-Type': 'multipart/form-data'
+            "Content-Type": "multipart/form-data",
           },
         });
 
         // Verify that the file upload response is as expected
         if (!fileResponse.data.uploadFileName) {
-          throw new Error('File upload did not return a filename.');
+          throw new Error("File upload did not return a filename.");
         }
 
         const imageUrl = `${BASE_IMAGE_URL}${fileResponse.data.uploadFileName}`;
         // Now that the file is uploaded, submit the new post with the returned file name
-        const postResponse = await this.$api.post('/post/', {
+        const postResponse = await this.$api.post("/post/", {
           title: this.animalName,
           description: this.description,
           image: imageUrl, // This should be the path to access the image
@@ -268,8 +368,8 @@ export default {
         });
 
         this.$q.notify({
-          type: 'positive',
-          message: 'Post successfully.'
+          type: "positive",
+          message: "Post successfully.",
         });
 
         // Refresh the list after submitting
@@ -278,10 +378,13 @@ export default {
         // Reset the form and close the modal
         this.closePostModal();
       } catch (error) {
-        console.error('Error:', error.response ? error.response.data : error.message);
+        console.error(
+          "Error:",
+          error.response ? error.response.data : error.message
+        );
         this.$q.notify({
-          type: 'negative',
-          message: error.message || 'Failed to create post.'
+          type: "negative",
+          message: error.message || "Failed to create post.",
         });
       }
     },
@@ -292,43 +395,55 @@ export default {
       } else {
         // If user is not logged in, show notification to log in or sign up
         this.$q.notify({
-          color: 'negative',
-          position: 'top',
-          message: 'You must be logged in to post. Please log in or',
+          color: "negative",
+          position: "top",
+          message: "You must be logged in to post. Please log in or",
           actions: [
-            { label: 'Sign Up', color: 'white', handler: () => { this.$router.push('/register'); } }
-          ]
+            {
+              label: "Sign Up",
+              color: "white",
+              handler: () => {
+                router.push("/register");
+              },
+            },
+          ],
         });
       }
     },
     closePostModal() {
       this.showPostModal = false;
       this.postImageFile = null;
-      this.postImage = '';
-      this.animalName = '';
-      this.description = '';
+      this.postImage = "";
+      this.animalName = "";
+      this.description = "";
       // Reset the file input if needed
       if (this.$refs.fileInput) {
-        this.$refs.fileInput.value = '';
+        this.$refs.fileInput.value = "";
       }
     },
     async getData() {
       try {
-        const response = await this.$api.get('/post/all');
+        const response = await this.$api.get("/post/all");
         this.posts = response.data
-          .map(post => ({
+          .map((post) => ({
             ...post,
-            author: post.author || 'Unknown',
-            description: post.description || 'No description',
-            image: post.image && !post.image.startsWith('http') ? `${BASE_IMAGE_URL}${post.image}` : post.image,
+            author: post.author || "Unknown",
+            description: post.description || "No description",
+            image:
+              post.image && !post.image.startsWith("http")
+                ? `${BASE_IMAGE_URL}${post.image}`
+                : post.image,
             user_id: post.user_id,
-            user_img: post.user_img && !post.user_img.startsWith('http') ? `${BASE_IMAGE_URL}${post.user_img}` : post.user_img,
+            user_img:
+              post.user_img && !post.user_img.startsWith("http")
+                ? `${BASE_IMAGE_URL}${post.user_img}`
+                : post.user_img,
           }))
           .sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // Sort by latest
       } catch (error) {
         this.$q.notify({
-          type: 'negative',
-          message: 'Error fetching posts: ' + error.message
+          type: "negative",
+          message: "Error fetching posts: " + error.message,
         });
       }
     },
@@ -346,8 +461,8 @@ export default {
     async editPost() {
       if (!this.postToEdit.id) {
         this.$q.notify({
-          type: 'negative',
-          message: 'Post ID is not available.'
+          type: "negative",
+          message: "Post ID is not available.",
         });
         return;
       }
@@ -356,11 +471,11 @@ export default {
         if (this.editPostImageFile) {
           // Upload the new image first
           const formData = new FormData();
-          formData.append('singlefile', this.editPostImageFile);
+          formData.append("singlefile", this.editPostImageFile);
 
-          const fileResponse = await this.$api.post('/file/upload', formData, {
+          const fileResponse = await this.$api.post("/file/upload", formData, {
             headers: {
-              'Content-Type': 'multipart/form-data'
+              "Content-Type": "multipart/form-data",
             },
           });
 
@@ -381,18 +496,18 @@ export default {
 
         // Post was updated successfully
         this.$q.notify({
-          type: 'positive',
-          message: 'Post updated successfully.'
+          type: "positive",
+          message: "Post updated successfully.",
         });
         this.detailsDialog = false;
         this.showEditDialog = false;
         await this.getData(); // Refresh the list
       } catch (error) {
         // Handle errors here
-        console.error('Error:', error);
+        console.error("Error:", error);
         this.$q.notify({
-          type: 'negative',
-          message: 'Failed to update post.'
+          type: "negative",
+          message: "Failed to update post.",
         });
       }
     },
@@ -405,22 +520,23 @@ export default {
         image: this.postToEdit.image,
       };
 
-      this.$api.put(`/post/${this.postToEdit.id}`, dataToUpdate)
+      this.$api
+        .put(`/post/${this.postToEdit.id}`, dataToUpdate)
         .then(() => {
           // Post was updated successfully
           this.$q.notify({
-            type: 'positive',
-            message: 'Post updated successfully.'
+            type: "positive",
+            message: "Post updated successfully.",
           });
           this.showEditDialog = false;
           this.getData(); // Refresh the list
         })
-        .catch(error => {
+        .catch((error) => {
           // Handle errors here
-          console.error('Error updating post:', error);
+          console.error("Error updating post:", error);
           this.$q.notify({
-            type: 'negative',
-            message: 'Failed to update post.'
+            type: "negative",
+            message: "Failed to update post.",
           });
         });
     },
@@ -429,41 +545,42 @@ export default {
       // Check if we have a valid post ID
       if (!this.postToDeleteId) {
         this.$q.notify({
-          type: 'negative',
-          message: 'Post ID is not available.'
+          type: "negative",
+          message: "Post ID is not available.",
         });
         return;
       }
 
       // Perform the API call to delete the post
-      this.$api.delete(`/post/${this.postToDeleteId}`)
+      this.$api
+        .delete(`/post/${this.postToDeleteId}`)
         .then(() => {
           this.$q.notify({
-            type: 'positive',
-            message: 'Post deleted successfully.'
+            type: "positive",
+            message: "Post deleted successfully.",
           });
           this.detailsDialog = false;
           this.showDeleteConfirmDialog = false; // Hide the confirmation dialog
           this.postToDeleteId = null; // Reset the postToDeleteId
           this.getData(); // Refresh the list
-        }).catch((error) => {
-          console.error('Error:', error);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
           this.$q.notify({
-            type: 'negative',
-            message: 'Failed to delete post.'
+            type: "negative",
+            message: "Failed to delete post.",
           });
         });
     },
     markAsAdopted(post) {
-      console.log('Marking as adopted:', post.id);
+      console.log("Marking as adopted:", post.id);
       // You would likely make an API call here to update the post status
     },
-
   },
   mounted() {
     this.getData();
   },
-}
+};
 </script>
 
 <style scoped>
