@@ -3,16 +3,41 @@ const routes = [
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/IndexPage.vue") },
-      { path: "/register", component: () => import("pages/RegisterPage.vue") },
-      { path: "/login", component: () => import("pages/LoginPage.vue") },
-      { path: "/post", component: () => import("pages/PostPage.vue") },
+      {
+        path: "/",
+        name: "home",
+        component: () => import("pages/IndexPage.vue"),
+      },
+      {
+        path: "/register",
+        name: "register",
+        component: () => import("pages/RegisterPage.vue"),
+      },
+      {
+        path: "/login",
+        name: "login",
+        component: () => import("pages/LoginPage.vue"),
+      },
+      {
+        path: "/post",
+        name: "post",
+        component: () => import("pages/PostPage.vue"),
+      },
       {
         path: "/dashboard",
+        name: "dashboard",
         component: () => import("pages/DashboardPage.vue"),
       },
-      { path: "/pet", component: () => import("pages/AnimalPage.vue") },
-      { path: "/map", component: () => import("pages/MapPage.vue") },
+      {
+        path: "/pet",
+        name: "pet",
+        component: () => import("pages/AnimalPage.vue"),
+      },
+      {
+        path: "/map",
+        name: "map",
+        component: () => import("pages/MapPage.vue"),
+      },
     ],
   },
 
