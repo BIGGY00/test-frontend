@@ -91,7 +91,7 @@ const unregislinksList = [
   {
     title: "Home",
     icon: "home",
-    link: "home",
+    link: "/",
   },
   {
     title: "About Us",
@@ -101,7 +101,7 @@ const unregislinksList = [
   {
     title: "Animal's Life",
     icon: "pets",
-    link: "pet",
+    link: "/pet",
   },
 ];
 
@@ -109,22 +109,22 @@ const userlinksList = [
   {
     title: "Dashboard",
     icon: "dashboard",
-    link: "dashboard",
+    link: "/dashboard",
   },
   {
     title: "Community",
     icon: "groups",
-    link: "post",
+    link: "/post",
   },
   {
     title: "Animal's Life",
     icon: "pets",
-    link: "pet",
+    link: "/pet",
   },
   {
     title: "Map",
     icon: "location_on",
-    link: "map",
+    link: "/map",
   },
   {
     title: "Logout",
@@ -136,22 +136,22 @@ const adminlinksList = [
   {
     title: "Dashboard",
     icon: "dashboard",
-    link: "dashboard",
+    link: "/dashboard",
   },
   {
     title: "Community",
     icon: "groups",
-    link: "post",
+    link: "/post",
   },
   {
     title: "Animal's Life",
     icon: "pets",
-    link: "pet",
+    link: "/pet",
   },
   {
     title: "Map",
     icon: "location_on",
-    link: "map",
+    link: "/map",
   },
   {
     title: "Logout",

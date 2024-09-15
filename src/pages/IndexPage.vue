@@ -5,11 +5,21 @@
       <q-img
         src="/src/assets/Stray Animal Care Logo.png"
         contain
-        style="max-width: 150px; max-height: 150px;"
+        style="max-width: 150px; max-height: 150px"
       />
       <div class="q-mt-md">
-        <q-btn label="Login" to="/login" color="green" class="full-width q-mb-md" />
-        <q-btn label="Register" to="/register" color="green" class="full-width" />
+        <q-btn
+          label="Login"
+          to="/login"
+          color="green"
+          class="full-width q-mb-md"
+        />
+        <q-btn
+          label="Register"
+          to="/register"
+          color="green"
+          class="full-width"
+        />
       </div>
     </div>
   </q-page>
@@ -36,9 +46,9 @@
 </style>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'IndexPage'
-})
+  name: "IndexPage",
+});
 </script>

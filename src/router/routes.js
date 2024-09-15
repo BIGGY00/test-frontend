@@ -9,16 +9,6 @@ const routes = [
         component: () => import("pages/IndexPage.vue"),
       },
       {
-        path: "/register",
-        name: "register",
-        component: () => import("pages/RegisterPage.vue"),
-      },
-      {
-        path: "/login",
-        name: "login",
-        component: () => import("pages/LoginPage.vue"),
-      },
-      {
         path: "/post",
         name: "post",
         component: () => import("pages/PostPage.vue"),
@@ -37,6 +27,23 @@ const routes = [
         path: "/map",
         name: "map",
         component: () => import("pages/MapPage.vue"),
+      },
+    ],
+  },
+
+  {
+    path: "/main",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "/register",
+        name: "register",
+        component: () => import("pages/RegisterPage.vue"),
+      },
+      {
+        path: "/login",
+        name: "login",
+        component: () => import("pages/LoginPage.vue"),
       },
     ],
   },
