@@ -86,12 +86,16 @@ const BASE_IMAGE_URL = "http://localhost:3000/assets/";
 import { defineComponent, ref, computed } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { useLoginUserStore } from "../stores/loginUserStore.js";
+import { useRoute, useRouter } from "vue-router";
+
+const route = useRoute();
+const router = useRouter();
 
 const unregislinksList = [
   {
     title: "Home",
     icon: "home",
-    link: "/",
+    name: "home",
   },
   {
     title: "About Us",
@@ -101,7 +105,7 @@ const unregislinksList = [
   {
     title: "Animal's Life",
     icon: "pets",
-    link: "/pet",
+    name: "pet",
   },
 ];
 
@@ -109,22 +113,22 @@ const userlinksList = [
   {
     title: "Dashboard",
     icon: "dashboard",
-    link: "/dashboard",
+    name: "dashboard",
   },
   {
     title: "Community",
     icon: "groups",
-    link: "/post",
+    name: "post",
   },
   {
     title: "Animal's Life",
     icon: "pets",
-    link: "/pet",
+    name: "pet",
   },
   {
     title: "Map",
     icon: "location_on",
-    link: "/map",
+    name: "map",
   },
   {
     title: "Logout",
@@ -136,26 +140,26 @@ const adminlinksList = [
   {
     title: "Dashboard",
     icon: "dashboard",
-    link: "/dashboard",
+    name: "dashboard",
   },
   {
     title: "Community",
     icon: "groups",
-    link: "/post",
+    name: "post",
   },
   {
     title: "Animal's Life",
     icon: "pets",
-    link: "/pet",
+    name: "pet",
   },
   {
     title: "Map",
     icon: "location_on",
-    link: "/map",
+    name: "map",
   },
   {
     title: "Logout",
-    icon: "logout",
+    name: "logout",
   },
 ];
 
