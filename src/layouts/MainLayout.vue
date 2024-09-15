@@ -81,7 +81,6 @@
 </template>
 
 <script>
-// Not good
 const BASE_IMAGE_URL = "http://localhost:3000/assets/";
 import { defineComponent, ref, computed } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
@@ -96,7 +95,6 @@ const unregislinksList = [
   {
     title: "About Us",
     icon: "badge",
-    // link: "/aboutUs",
   },
   {
     title: "Animal's Life",
@@ -160,13 +158,12 @@ const adminlinksList = [
 ];
 
 export default defineComponent({
-  link: "MainLayout",
+  name: "MainLayout", // Fix name
   components: { EssentialLink },
   setup() {
     const storeLogUser = useLoginUserStore();
     const leftDrawerOpen = ref(false);
 
-    // Computed properties for determining user states
     const notRegis = computed(() => !storeLogUser.userType);
     const isUser = computed(() => storeLogUser.userType === "user");
     const isAdmin = computed(() => storeLogUser.userType === "admin");

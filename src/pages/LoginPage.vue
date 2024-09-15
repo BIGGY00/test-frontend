@@ -56,10 +56,12 @@
               />
             </div>
             <div>
-              <text-caption class="text-cyan-8">
+              <q-caption class="text-cyan-8">
                 Not registered?
-                <a href="/register">Create an Account</a>
-              </text-caption>
+                <router-link to="/register" class="text-primary"
+                  >Create an Account</router-link
+                >
+              </q-caption>
             </div>
           </q-form>
         </q-card-section>
