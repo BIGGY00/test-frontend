@@ -1,3 +1,5 @@
+import { createRouter, createWebHistory } from "vue-router";
+
 const routes = [
   {
     path: "/",
@@ -61,4 +63,4 @@ const router = createRouter({
   routes,
 });
 
-export default routes;
+export default router;
