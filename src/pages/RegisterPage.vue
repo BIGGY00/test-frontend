@@ -224,7 +224,7 @@ export default defineComponent({
               message: "Registration successful",
             });
 
-            router.push("/dashboard");
+            router.push({ name: "dashboard" });
           } else {
             throw new Error("Invalid response from server");
           }
