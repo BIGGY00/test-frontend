@@ -1,4 +1,4 @@
-const routes = [
+const routes = createRouter([
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
@@ -61,11 +61,6 @@ const routes = [
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),
   },
-];
+]);
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: [{ path: "/:pathMatch(.*)", component: NotFoundComponent }],
-});
-
-export default router;
+export default routes;
