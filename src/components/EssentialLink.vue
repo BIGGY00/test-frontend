@@ -73,7 +73,7 @@ export default defineComponent({
           type: "info",
           message: "Logout successfully",
         });
-        router.push({ name: "home" }).catch((err) => {
+        this.$router.push("/").catch((err) => {
           console.error("Router push error:", err);
         });
       }

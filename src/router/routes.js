@@ -63,4 +63,9 @@ const routes = [
   },
 ];
 
-export default routes;
+const router = createRouter({
+  history: createWebHistory(),
+  routes: [{ path: "/:pathMatch(.*)", component: NotFoundComponent }],
+});
+
+export default router;
