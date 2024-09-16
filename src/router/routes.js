@@ -1,4 +1,4 @@
-const routes = createRouter([
+const routes = [
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
@@ -61,6 +61,6 @@ const routes = createRouter([
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),
   },
-]);
+];
 
 export default routes;
